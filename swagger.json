@@ -1,0 +1,138 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "Blue-Automation-Api",
+    "version" : "2022-06-27T12:05:56Z"
+  },
+  "servers" : [ {
+    "url" : "https://api.riiotlabs.com/automation",
+  } ],
+  "paths" : { 
+    "/blue/{blueKey}/lastMeasurement" : {
+      "get" : { 
+        "parameters" : [ {
+          "name" : "blueKey",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Methods" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Headers" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : { }
+          }
+        }
+      }
+    },
+    "/blue/{blueKey}/configureWebhook" : {
+      "post" : { 
+        "parameters" : [ {
+          "name" : "blueKey",
+          "in" : "path",
+          "required" : true,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Methods" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              },
+              "Access-Control-Allow-Headers" : {
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            },
+            "content" : { }
+          }
+        }
+      }
+    } 
+  },
+  "components" : {
+    "schemas" : {
+      "LastMeasurement" : {
+        "title" : "LastMeasurement",
+        "type" : "object",
+        "properties" : {
+          "temperature_celsius" : {
+            "type" : "number"
+          },
+          "ph" : {
+            "type" : "number"
+          },
+          "salinity_g_per_l" : {
+            "type" : "number"
+          },
+          "temperature_fahrenheit" : {
+            "type" : "number"
+          },
+          "orp_mV" : {
+            "type" : "number"
+          },
+          "timestamp" : {
+            "type" : "string"
+          }
+          "blueKey" : {
+            "type" : "string"
+          },
+          "status" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string",
+              "enum" : [ "BLUE_ASLEEP", "PH_LOW", "PH_OK", "PH_HIGH", "ORP_LOW", "ORP_OK", "ORP_HIGH", "SALINITY_HIGH", "SALINITY_OK", "SALINITY_LOW", "SP_OK", "SP_NOT_OK", "TEMPERATURE_LOW", "TEMPERATURE_HIGH", "TEMPERATURE_OK", "TEMPERATURE_IDEAL", "FCL_LOW", "FCL_OK", "FCL_HIGH", "FBR_LOW", "FBR_OK", "FBR_HIGH", "TA_LOW", "TA_OK", "TA_HIGH", "TA_OLD", "CYA_LOW", "CYA_OK", "CYA_HIGH", "CYA_OLD", "TH_LOW", "TH_OK", "TH_HIGH", "TH_OLD" ]
+            }
+          }
+        }
+      },
+      "configureWebhook" : {
+        "title" : "configureWebhook",
+        "type" : "object",
+        "properties" : {
+          "headers" : {
+            "type" : "object",
+            "description" : "A list of headers that we will send to your server, to manage a certain level of security. all headers are fixed and must be string values."
+          },
+          "active" : {
+            "type" : "boolean",
+            "description" : "To enable/disable the sending without removing the whole configuration."
+          },
+          "url" : {
+            "type" : "string",
+            "description" : "The webhook URL from your own server"
+          }
+        }
+      }
+    }
+  }
+}
